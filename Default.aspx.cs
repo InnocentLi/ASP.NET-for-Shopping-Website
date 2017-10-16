@@ -47,6 +47,7 @@ public partial class _Default : System.Web.UI.Page
            // Page.ClientScript.RegisterClientScriptBlock(GetType(), "", "<div style='display:inline-block;'><img src=" + s4 + "><h3>" + s6 + "</h3><p>" + s7 + "</p><h5>" + s2 + "</h5></div>");
          //  Response.Write("<div style='display:inline-block;'><img src=" + s4+"><h3>"+s6+"</h3><p>"+s7+"</p><h5>"+s2+ "</h5></div>");
          strHTML = "<div style='display:inline-block;'><img style='width:230px' src=" + s4 + "><h3>" + s6 + "</h3><p>" + s7 + "</p><h5>" + s2 + "</h5></div>";
+          
         }
         conn.Close();
 
@@ -56,8 +57,8 @@ public partial class _Default : System.Web.UI.Page
 
     public void load(String sql)
     {
-        string s1, s2,s3 ,s4, s5, s6, s7,s9,s10;
-        int a;
+        string s1, s2, s4, s5, s6, s7;
+        int s3;
         openDatabase();
         cmd = new SqlCommand(sql, conn);
         SqlDataReader dr = cmd.ExecuteReader();
@@ -69,11 +70,15 @@ public partial class _Default : System.Web.UI.Page
             s5 = (String)dr[5].ToString().Trim();
             s6 = (String)dr[6].ToString().Trim();
             s7 = (String)dr[7].ToString().Trim();
-
-            strHTML += "<div style='display:inline-block; '><img style='width:230px' src=" + s4 + "><h3>" + s6 + "</h3><p>" + s7 + "</p><h5>" + s2 + "</h5></div>";
-       
-           // a = (Int32)dr[3] + 1;
-          //  sql = " UPDATE buy SET vc = " + a + " WHERE name =" + s1 + "";
+            s3 = (Int32)dr[3];
+           
+            strHTML += "<div style='display:inline-block; '><img style='width:230px' src=" + s4 + "><h3>" + s6 + "</h3><p>" + s7 + "</p><h5>" + s2 + "</h5>   <button><a href ='Show.aspx'>立即购买</a></div></button>";
+            Session["phone"] = s1;
+            Session["purl"] = s4;
+            Session["money"] = s6;
+            Session["in"] = s7;
+            // a = (Int32)dr[3] + 1;
+            //  sql = " UPDATE buy SET vc = " + a + " WHERE name =" + s1 + "";
         }
         
   
@@ -81,6 +86,10 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        Session["phone"] = null;
+        Session["purl"] = null;
+        Session["money"] = null;
+        Session["in"] = null;
         strHTML = null;
         if (!IsPostBack) { load();
              
@@ -100,6 +109,7 @@ public partial class _Default : System.Web.UI.Page
         load(sql);
     }
 
+
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
         sql = "select * from buy where name LIKE'%iPhone%'";
@@ -116,5 +126,10 @@ public partial class _Default : System.Web.UI.Page
     {
         sql = "select * from buy where name LIKE'%小米%'";
         load(sql);
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        
     }
 }

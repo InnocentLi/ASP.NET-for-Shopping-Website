@@ -15,8 +15,8 @@
             margin-top: 0;
         }
         #logo{
-            width:363px;
-            height:121px;
+            width:1180px;
+            height:125px;
             margin:0 auto;
             text-align:center;
             
@@ -27,11 +27,25 @@
 
         .auto-style2 {
             height: 251px;
+            width: 244px;
         }
         #my {
             width:1190px;
-            margin:258px auto 0 auto;
+            text-align:center;
+            margin:20px auto 0 auto;
             float:left;
+        }
+        #ImageButton1{
+            display:inline-block;
+            top:0px;
+        }
+        #ImageButton2{
+            display:inline-block;
+            top:0px;
+        }
+        #ImageButton3{
+            display:inline-block;
+            top:0px;
         }
     </style>
 </head>
@@ -43,24 +57,26 @@
       
        <div class="center">   <asp:TextBox ID="TextBox1" runat="server" Height="25px" Width="280px" BorderColor="#FF3300" BorderWidth="1px" Font-Size="Large" OnTextChanged="TextBox1_TextChanged" Wrap="False"></asp:TextBox>    
            <asp:Button ID="Button1" runat="server" BackColor="#FF3300" BorderColor="White" CssClass="auto-style1" Font-Names="Arial Black" Font-Size="Large" ForeColor="White" Height="29px" OnClick="Button1_Click" Text="搜索" Width="67px" />
+           <button><a href ='over.aspx'>结算</a></button>
         </div>
          
         <div id="logo" class="auto-style2"> 
           
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/img/apple.jpg" OnClick="ImageButton1_Click" />
-            <br />
             <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/img/samsung.png" OnClick="ImageButton2_Click" />
-            <br />
             <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/img/xiaomi.png" OnClick="ImageButton3_Click" />
+          
+            <br />
+            <br />
           
          </div>
 
-      <div id="my" runat="server">
-          <%=strHTML%>                                                                           <!--razor -->                                                                  
-      </div>
   
          
     </form>
       
+      <div id="my" runat="server">
+          <%=strHTML%>                                                                           <!--razor -->                                                                  
+      </div>
 </body>
 </html>
