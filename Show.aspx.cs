@@ -62,6 +62,6 @@ public partial class Show: System.Web.UI.Page
         SqlCommand commd = new SqlCommand(sqladd, conn);
         commd.ExecuteReader();
         conn.Close();
-  
+        Response.Write("<script>alert('添加购物车成功')</script >");
     }
 }
